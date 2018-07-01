@@ -6,6 +6,8 @@ An online code editor with syntax highlighting and code sharing features built w
 
 ## Landing Page
 A powerful editor with over 110 supported languages and modern themes.
+<br />
+<br />
 ![Simple to use](img/landing_page.png?raw=true "Title")
 <br />
 <br />
