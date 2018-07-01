@@ -1,0 +1,11 @@
+
+<!-- currently inactive page. this form in case a confirmation of object deletion
+is required -->
+
+<!-- to activate this form, remove the 'get' function from delete class in views -->
+
+<form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <input type="submit" value="DELETE" />
+</form>

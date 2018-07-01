@@ -1,0 +1,53 @@
+
+<!-- this is the login page -->
+
+<html>
+    <head>
+        {% load staticfiles %}
+        <link rel='stylesheet' href='/static/login.css'>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/static/src-noconflict/ace.js" charset="utf-8"></script>
+
+        <script>
+
+            window.resizeBy(1,1);
+
+            function copyLink() {
+              var copyText = document.getElementById("link-field");
+              copyText.select();
+              document.execCommand("copy");
+            }
+
+        </script>
+
+    </head>
+    <body>
+        <div class='intro-box container-fluid'>
+            <div class='nav'>
+<!--                <a href='#'><img src='' class='logo'></a>-->
+                <a href='/codemate/'><span class='brand-name'>CodeMate</span></a>
+            </div>
+            <div class='card-box'>
+                <div class='card'>
+                    <form action='authUser/' method='post' class='form-horizontal'>
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label class='uid-lab' id='uid-lab' for='username'>Username </label>
+                            <input type='text' name='username' class='uid-field' id='id_username' autocomplete="off" required>
+                        </div>
+                        <div class='form-group'>
+                            <label class='pass-lab' id='pass-lab' for='password'>Password </label>
+                            <input type='password' name='password' class='pass-field' id='id_password' autocomplete="off" required><br>
+                        </div>
+                        <input type='submit' value='Login' class='login-btn'>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

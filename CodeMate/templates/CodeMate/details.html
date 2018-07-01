@@ -1,0 +1,154 @@
+
+<!-- page the loads the final content with code url and actual code after new code
+creation or code updation. this page also serves as an editing page to the
+original code. for detailed explanation of code see 'code_form.html' file
+in templates -->
+
+<html>
+    <head>
+        {% load staticfiles %}
+        <link rel='stylesheet' href='/static/details.css'>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Galada" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/static/src-noconflict/ace.js" charset="utf-8"></script>
+
+        <script>
+
+            window.resizeBy(1,1);
+
+            function copyLink() {
+              var copyText = document.getElementById("link-field");
+              copyText.select();
+              document.execCommand("copy");
+            }
+
+        </script>
+
+    </head>
+    <body>
+
+
+        <div class='intro-box container-fluid'>
+            <div class='nav'>
+<!--                <a href='#'><img src='' class='logo'></a>-->
+                {% if loggedIn %}
+                    <script>
+
+                        alert('User Logged in!');
+
+                    </script>
+                {% endif %}
+                <a href='/codemate/'><span class='brand-name'>CodeMate</span></a>
+            </div>
+
+
+            <form action='{{object.slug}}/modify' method='post'>
+                {% csrf_token %}
+                <label class='link-lab' id='link-lab' for='link'>Code URL</label>
+                <input type="text" class='link-field' id='link-field' name='link' readonly>
+                <button type="button" class='link-btn' onclick='copyLink()' id='link-btn'><span class='glyphicon glyphicon-link link-span'></span></button>
+                <script>
+                    document.getElementById('link-field').value=window.location.href;
+                </script>
+
+
+                <textarea type='text' id='id_content' name='content' maxlength='1000000' style="display:none"></textarea>
+
+
+
+                <input type='submit' value='Save' style='margin-left:1%;border-radius:25px;
+                background-color:rgba(0,0,0,0);color:white;padding:5px 20px 5px 20px'
+                id='save-btn'>
+
+
+
+                <a href='{{ request.path }}/delete'><button type="button" style='margin-left:1%;border-radius:25px;
+                background-color:rgba(0,0,0,0);color:white;padding:5px 20px 5px 20px'
+                id='del-btn'>Delete</button></a>
+
+
+
+                <select class="drop form-control" name="theme" maxlength="10" id="id_theme">
+                    {% include 'CodeMate/theme.html' %}
+                </select>
+                <label class='theme-lang-lab' id='id_theme_lab' for="theme">Theme</label>
+
+
+
+                <input type='text' class='lang-field' id='lang-field' name='lang' readonly>
+                <label class='lang-lab' for='lang' id='lang-lab'>Language</label>
+
+
+
+                <script>
+                    document.getElementById('lang-field').value='{{ object.language }}';
+                </script>
+
+
+                <!-- this invisible div is used to indirectly show the code content
+                inside the editor. the major motivation for this deliberate
+                use of div was the fact that, the use of quotes in
+                javascript function to update the editor leads to problems.
+                when the code has quotes, these quotes interfere with the
+                quotes in javascript function quotes. this problem happens
+                because '{\{ this thing }\}' gets replaced directly with its
+                content by django, much like preprocessor replaces #include
+                in C/C++. django is not even allowing me to write the correct
+                actual form with double curly brackets.-->
+                <div id='buffer' style='display:none'>{{ object.content|force_escape }}</div>
+
+                <!-- div which is used as the code viewer(ace editor) -->
+                <div id='viewer' class='main-viewer'></div>
+                <script>
+                    var editor=ace.edit('viewer');
+
+                    editor.getSession().setMode('ace/mode/c_cpp');
+
+                    editor.setTheme('ace/theme/monokai');
+
+                    editor.getSession().setMode('ace/mode/'+'{{ object.language }}'.toLowerCase())
+
+                    editor.getSession().setValue(document.getElementById('buffer').textContent);
+
+                    window.addEventListener("resize",function(){
+                        if(window.innerWidth < 1170){
+                            document.getElementById('lang-field').style.display='none';
+                            document.getElementById('lang-lab').style.display='none';
+                            document.getElementById('id_theme').style.display='none';
+                            document.getElementById('id_theme_lab').style.display='none';
+                        }
+                        if(window.innerWidth < 610){
+                            document.getElementById('link-lab').style.display='none';
+                            document.getElementById('link-field').style.display='none';
+                        }
+                        if(window.innerWidth > 1170){
+                            document.getElementById('lang-field').style.display='inline';
+                            document.getElementById('lang-lab').style.display='inline';
+                            document.getElementById('id_theme').style.display='inline';
+                            document.getElementById('id_theme_lab').style.display='inline';
+                        }
+                        if(window.innerWidth > 610){
+                            document.getElementById('link-lab').style.display='inline-block';
+                            document.getElementById('link-field').style.display='inline-block';
+                        }
+                    });
+
+                    $('#id_theme').on('change',function() {
+                        editor.setTheme('ace/theme/'+$(this).val().toLowerCase());
+                    });
+
+                    var textarea=$('#id_content');
+
+                    editor.getSession().on('change', function () {
+                    textarea.val(editor.getSession().getValue());
+                    });
+
+                </script>
+            </form>
+        </div>
+    </body>
+</html>

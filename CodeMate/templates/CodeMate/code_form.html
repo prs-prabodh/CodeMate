@@ -1,0 +1,117 @@
+
+<!-- page the loads the new code creation form -->
+
+<html>
+    <head>
+        {% load staticfiles %}
+        <link rel='stylesheet' href='/static/form-css.css'>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <script>
+
+            // generates a random string of length 8 for each new code created
+            function makeId() {
+              var uid = "";
+              var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+              for (var i = 0; i < 8; i++)
+                uid += chars.charAt(Math.floor(Math.random() * chars.length));
+
+              document.getElementById('id_slug').value=uid;
+            }
+
+        </script>
+
+        <!-- ace editor js file -->
+        <script type="text/javascript" src="/static/src-noconflict/ace.js"></script>
+
+    </head>
+    <body class='intro-box' onload='makeId()'>
+        <div class='intro-box-1 container-fluid'>
+            <div class='nav'>
+<!--                <a href='#'><img src='' class='logo'></a>-->
+                <a href='/codemate/'><span class='brand-name'>CodeMate</span></a>
+                <a href='/codemate/signup/'><span class='sign-up'>Sign up</span></a>
+                <a href='/codemate/login/'><span class='login'>Login</span></a>
+            </div>
+            <form action='addObject/' method='post'>
+                {% csrf_token %}
+                <div class='upper'>
+                    <button type="submit" class='sub-btn'>Share Code</button>
+                    <select class="drop form-control" name="theme" maxlength="10" id="id_theme">
+                        {% include 'CodeMate/theme.html' %}
+                    </select>
+                    <label class='theme-lang-lab' id='id_theme_lab' for="theme">Theme</label>
+                    <select class="drop form-control" name="language" maxlength="10" required id="id_language">
+                        {% include 'CodeMate/lang.html' %}
+                    </select>
+                    <label class='theme-lang-lab' id='id_language_lab' for="language">Language</label>
+                    <input type='text' class='slug' name='slug' maxlength='10' required id='id_slug'>
+                    <input type='text' class='expire' name='expire' maxlength='10' required id='id_expire' value='24'>
+                </div>
+                <div id='editor' class='main-code'></div>
+                <textarea type='text' id='id_content' name='content' maxlength='1000000' style="display:none"></textarea>
+                <script>
+
+                    // textarea is the invisible input field in the form which
+                    // contains the code. this is used to to easily send the
+                    // the post request required to extract the code from
+                    // request to server
+                    var textarea=$('#id_content');
+                    var editor=ace.edit('editor');
+
+                    //everytime the content of editor changes, textarea
+                    // is updated
+                    editor.getSession().on('change', function () {
+                    textarea.val(editor.getSession().getValue());
+                    });
+
+                    textarea.val(editor.getSession().getValue());
+
+                    //editor customisations
+                    editor.getSession().setUseWrapMode(false);
+
+                    editor.getSession().setMode('ace/mode/c_cpp');
+
+                    editor.setTheme('ace/theme/monokai');
+
+                    editor.focus();
+
+                    //to make unnecessary elements invisible when screens size
+                    //is decreased
+                    window.addEventListener("resize",function(){
+                        if(window.innerWidth < 560){
+                            document.getElementById('id_language').style.display='none';
+                            document.getElementById('id_language_lab').style.display='none';
+                            document.getElementById('theme').style.display='none';
+                            document.getElementById('id_theme_lab').style.display='none';
+                        }
+                        if(window.innerWidth > 560){
+                            document.getElementById('id_language').style.display='block';
+                            document.getElementById('id_language_lab').style.display='block';
+                            document.getElementById('theme').style.display='block';
+                            document.getElementById('id_theme_lab').style.display='block';
+                        }
+                    });
+
+                    //when language is changed from dropdown menu, editor
+                    //language is updated
+                    $('#id_language').on('change',function() {
+                        editor.getSession().setMode('ace/mode/'+$(this).val().toLowerCase());
+                    });
+
+                    //when theme is changed from dropdown menu, editor theme is
+                    //updated
+                    $('#id_theme').on('change',function() {
+                        editor.setTheme('ace/theme/'+$(this).val().toLowerCase());
+                    });
+                </script>
+            </form>
+        </div>
+    </body>
+</html>

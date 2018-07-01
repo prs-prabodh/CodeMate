@@ -1,0 +1,53 @@
+
+<!-- main landing page -->
+
+<html>
+    <head>
+        <title>CodeMate</title>
+        {% load staticfiles %}
+        <link rel='stylesheet' href='/static/css.css'>
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+        <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+        <script src="/static/jquery.min.js"></script>
+        <script src="/static/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class='intro-box container-fluid'>
+            <div class='nav'>
+<!--                <a href='#'><img src='' class='logo'></a>-->
+                <a href='/codemate/'><span class='brand-name'>CodeMate</span></a>
+                <a href='/codemate/signup/'><span class='sign-up'>Sign up</span></a>
+                <a href='/codemate/login/'><span class='login'>Login</span></a>
+            </div>
+            <div class='main-text-class container'>
+                <p class='main-text'>Share Code with Mates instantly</p>
+            </div>
+            <div class='sec-text-class container'>
+                <p class='sec-text'>An online editor for students, teachers and professionals...</p>
+            </div>
+            <div class='main-btn-class'>
+                <a href="{% url 'code:create' %}"><button type="button" class="btn btn-primary btn-lg main-btn">New Code</button></a>
+            </div>
+            <div class='ter-text-class'>
+                <p class='ter-text'>Share Code for Free. Login to save Code.</p>
+            </div>
+        </div>
+<!--
+        <div class='features container-fluid'>
+            <div class='page-view'>
+                <div class='features-text-class' style="background-color: blue">
+                    <p class='features-text-1'>Built with Ace.</p>
+                </div>
+                <iframe src="https://giphy.com/embed/2BCyRa9NBNfsk" width="80%" height="80%" frameBorder="0" class="giphy-embed"></iframe>
+            </div>
+        </div>
+-->
+        <div class='footer'>
+            <p class='footer-text'>Created by <a href='https://www.linkedin.com/in/prabodh-ranjan-swain-8a91a113a'
+                class='linkedin-link'>Prabodh Ranjan Swain.</a> Drop an <a href='mailto:prabodhranjan98@gamil.com?subject=CodeMate%20Conversation'
+                class='mail-link'>email</a> for query, feedback and suggestions.</p>
+        </div>
+    </body>
+</html>
