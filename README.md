@@ -2,20 +2,29 @@
 An online code editor with syntax highlighting and code sharing features built with Ace Editor. This is a personal project.
 <br />
 <br />
-### Landing Page
-![Simple to use](img/landing_page.png?raw=true "Title")
+
+
+## Landing Page
 A powerful editor with over 110 supported languages and modern themes.
+![Simple to use](img/landing_page.png?raw=true "Title")
 <br />
 <br />
-### Share code with mates
+
+
+## Share code with mates
+Share code with a few clicks on the go.
+<br />
+<br />
 ![Share codes](img/code_form_1.png?raw=true "Title")
 <br />
-Share code with a few clicks on the go.
 <br />
 ![Share codes](img/code_form_2.png?raw=true "Title")
 <br />
 <br />
-### Edit code, re-use and re-share
-![Edit codes](img/details.png?raw=true "Title")
-<br />
+
+
+## Edit code, re-use and re-share
 Share code with a few clicks on the go.
+<br />
+<br />
+![Edit codes](img/details.png?raw=true "Title")
