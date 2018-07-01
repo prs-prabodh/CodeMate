@@ -1,5 +1,5 @@
 # CodeMate
-An online code editor with syntax highlighting and code sharing features, built with Ace Editor. This is a personal project. Django framework is used for backend.
+An online code editor with syntax highlighting and code sharing features, built with Ace Editor. Django framework is used for backend. This is a personal project.
 <br />
 <br />
 
