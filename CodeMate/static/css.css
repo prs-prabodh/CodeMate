@@ -1,0 +1,138 @@
+
+/* css page for 'landing_page.html' */
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.intro-box{
+    height: 80%;
+    margin-bottom: 0;
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to top, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to top, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.sign-up{
+    float: right;
+    margin-right: 15vw;
+    margin-top: 20px;
+    margin-left: 1%;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    font-size: 1.2em
+}
+
+.login{
+    float: right;
+    margin-right: 5vw;
+    margin-left: :5%;
+    margin-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    font-size: 1.2em
+}
+
+.brand-name{
+    float: left;
+    margin-left: 16vw;
+    margin-top: 15px;
+    margin-right: 30vw;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    font-size: 1.5em
+}
+
+.logo{
+    height: 20px;
+    width: 20px;
+}
+
+.main-text-class{
+    padding-top: 7%;
+    text-align: center;
+}
+
+.main-text{
+    color: white;
+    font-family: 'Slabo 27px', serif;
+    font-size: 6vw;
+}
+
+.sec-text-class{
+    padding-top: 1%;
+    text-align: center;
+}
+
+.sec-text{
+    color: white;
+    font-family: 'Slabo 27px', serif;
+    font-size: 180%
+}
+
+.main-btn-class{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding-top: 5vw;
+}
+
+.ter-text-class{
+    padding-top: 2vw;
+    text-align: center;
+}
+
+.main-btn{
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+.ter-text{
+    color: white;
+    font-family: 'Slabo 27px', serif;
+    font-size: 110%;
+}
+
+.footer{
+    height: 20%;
+    background-color: #0e1519;
+    display: flex;
+    justify-content: space-around;
+    font-family: 'Slabo 27px', serif;
+    color: white;
+    text-align: center;
+}
+
+.footer-text{
+    margin-top: 4%;
+    font-size: 130%;
+}
+
+.linkedin-link{
+    color: white;
+    text-decoration: underline;
+}
+
+.mail-link{
+    color: white;
+    text-decoration: underline;
+}
+/*
+.features{
+    padding-top: 3vw;
+    background-color: #2C5364;
+    display: flex;
+}
+
+.page-view{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 3vw;
+    width: 80%;
+    background-color: white;
+    margin-left: 10%;
+    height: 50%;
+    box-shadow: 0 14px 18px 0 rgba(0, 0, 0, 0.2), 0 16px 30px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+}*/
