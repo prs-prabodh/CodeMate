@@ -8,9 +8,11 @@ A powerful editor with over 110 supported languages and modern themes.
 <br />
 <br />
 ### Share code with mates
-![Share codes](img/code_form.png?raw=true "Title")
+![Share codes](img/code_form_1.png?raw=true "Title")
 <br />
 Share code with a few clicks on the go.
+<br />
+![Share codes](img/code_form_2.png?raw=true "Title")
 <br />
 <br />
 ### Edit code, re-use and re-share
