@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import include,path
 
 urlpatterns = [
-    path('',include('CodeMate.urls')),
+    path('http://cooper.pythonanywhere.com/codemate/',include('CodeMate.urls')),
     path('codemate/',include('CodeMate.urls')),
     path('admin/', admin.site.urls),
 ]
