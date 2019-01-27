@@ -1,5 +1,5 @@
-<a href='https://cooper.pythonanywhere.com/codemate'># CodeMate</a>
-An online code editor with syntax highlighting and code sharing features, built with Ace Editor. Django framework is used for backend. This is a personal project.
+# CodeMate
+An online code editor with syntax highlighting and code sharing features, built with Ace Editor. Django framework is used for backend. This is a personal project. <a href='https://cooper.pythonanywhere.com/codemate'> CodeMate </a>
 <br />
 <br />
 
